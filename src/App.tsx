@@ -32,7 +32,9 @@ function App() {
       >
         <img
           src={logo}
-          className="hidden lg:block absolute z-20 w-[50%] top-0 lg:top-0 lg:left-0 lg:w-[10%] h-auto p-5"
+          className={`hidden lg:block absolute z-20 w-[50%] top-0 lg:top-0 lg:left-0 lg:w-[10%] h-auto p-5 ${
+            isLoading ? "opacity-0" : "opacity-100"
+          }`}
         />
         <video
           src={dogfight}
