@@ -45,7 +45,10 @@ function App() {
             link, complete the application steps, and start playing with us
             today!
           </p>
-          <button className="bg-white text-[#5865f2]   flex items-center gap-4 hover:scale-[1.05] transition-all  font-extrabold p-3 lg:p-5 rounded-lg z-20">
+          <button
+            onClick={() => window.open("https://discord.gg/fG4TZVd", "_blank")}
+            className="bg-white text-[#5865f2]   flex items-center gap-4 hover:scale-[1.05] transition-all  font-extrabold p-3 lg:p-5 rounded-lg z-20"
+          >
             <Discord className="w-10 h-10" /> Join our discord!
           </button>
         </div>
