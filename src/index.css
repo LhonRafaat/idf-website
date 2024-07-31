@@ -1,0 +1,8 @@
+@font-face {
+  font-family: "Battlefield";
+  src: url("./assets/bf2042.otf") format("opentype");
+}
+
+body {
+  font-family: "Battlefield" !important;
+}
