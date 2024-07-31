@@ -24,7 +24,12 @@ function App() {
           isLoading ? "z-50 opacity-1 " : " opacity-0 z-0"
         }`}
       />
-      <div className="h-full w-full  min-h-screen min-w-screen flex relative justify-center items-center">
+
+      <div
+        className={`${
+          isLoading ? "bg-black" : ""
+        } h-full w-full  min-h-screen min-w-screen flex relative justify-center items-center`}
+      >
         <img
           src={logo}
           className="hidden lg:block absolute z-20 w-[50%] top-0 lg:top-0 lg:left-0 lg:w-[10%] h-auto p-5"
