@@ -1,12 +1,29 @@
 import { ReactTyped } from "react-typed";
 import "./App.css";
 import dogfight from "./assets/dogfight.mp4";
+import intro from "./assets/idf-intro.mp4";
 import logo from "./assets/idf-logo.png";
 import Discord from "./assets/discord.svg?react";
+import { useEffect, useState } from "react";
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 8000);
+  }, []);
   return (
     <>
+      <video
+        src={intro}
+        autoPlay
+        loop
+        muted
+        className={`w-full h-full fixed transition-all  object-cover ${
+          isLoading ? "z-50 opacity-1 " : " opacity-0 z-0"
+        }`}
+      />
       <div className="h-full w-full  min-h-screen min-w-screen flex relative justify-center items-center">
         <img
           src={logo}
