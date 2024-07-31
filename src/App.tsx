@@ -7,10 +7,10 @@ import Discord from "./assets/discord.svg?react";
 function App() {
   return (
     <>
-      <div className="h-screen w-screen flex relative justify-center items-center">
+      <div className="h-full w-full  min-h-screen min-w-screen flex relative justify-center items-center">
         <img
           src={logo}
-          className="absolute z-20 top-0 left-0 w-[10%] h-auto p-5"
+          className="hidden lg:block absolute z-20 w-[50%] top-0 lg:top-0 lg:left-0 lg:w-[10%] h-auto p-5"
         />
         <video
           src={dogfight}
@@ -20,15 +20,19 @@ function App() {
           className="w-full h-full absolute object-cover"
         />
         <div className="w-full h-full z-10 absolute bg-black opacity-60"></div>
-        <div className="absolute z-10 flex justify-center items-start flex-col text-white max-w-4xl gap-10">
+        <div className="absolute z-10 flex p-5 lg:p-0 justify-center items-start flex-col text-white max-w-4xl gap-5 lg:gap-10">
+          <img
+            src={logo}
+            className="block lg:hidden  z-20 w-[20%] top-0 lg:top-0 h-auto"
+          />
           <ReactTyped
             strings={["iDF Community"]}
-            className="text-5xl uppercase font-extrabold"
+            className="text-xl lg:text-5xl uppercase font-extrabold"
             typeSpeed={100}
             backDelay={5000}
             loop
           />
-          <p className="leading-8 text-2xl font-thin">
+          <p className=" leading-5  lg:leading-8 text-[.9rem] xl:text-2xl font-thin">
             Are you still flying regularly in Battlefield? Do you want to stay
             in closer contact with other dogfighters? Then you’ll want to join
             the IDF community! We play all the Battlefield games and welcome
@@ -41,7 +45,7 @@ function App() {
             link, complete the application steps, and start playing with us
             today!
           </p>
-          <button className="bg-white text-[#5865f2] flex items-center gap-4 hover:scale-[1.05] transition-all  font-bold p-5 rounded-lg z-20">
+          <button className="bg-white text-[#5865f2]   flex items-center gap-4 hover:scale-[1.05] transition-all  font-extrabold p-3 lg:p-5 rounded-lg z-20">
             <Discord className="w-10 h-10" /> Join our discord!
           </button>
         </div>
