@@ -42,7 +42,11 @@ function App() {
           className="w-full h-full absolute object-cover"
         />
         <div className="w-full h-full z-10 absolute bg-black opacity-60"></div>
-        <div className="absolute z-10 flex p-5 lg:p-0 justify-center items-start flex-col text-white max-w-4xl gap-5 lg:gap-10">
+        <div
+          className={` ${
+            isLoading ? "opacity-0" : "opacity-100"
+          } absolute z-10 flex p-5 lg:p-0 justify-center items-start flex-col text-white max-w-4xl gap-5 lg:gap-10`}
+        >
           <img
             src={logo}
             className="block lg:hidden  z-20 w-[20%] top-0 lg:top-0 h-auto"
