@@ -66,15 +66,10 @@ export const Members = () => {
       ></div>
       <div className="h-[20vh]"></div>
       <div className="flex h-full w-full text-white flex-col p-5">
-        {games.map((game: { label: string; bg: string }, i: number) => {
-          return (
-            <Accordion
-              key={i + game.label}
-              type="single"
-              className="!z-20"
-              collapsible
-            >
-              <AccordionItem value={"item-" + i + 1}>
+        <Accordion type="single" className="!z-20" collapsible>
+          {games.map((game: { label: string; bg: string }, i: number) => {
+            return (
+              <AccordionItem key={i + game.label} value={"item-" + i + 1}>
                 <AccordionTrigger
                   className="font-bold text-lg"
                   onClick={() => {
@@ -101,9 +96,9 @@ export const Members = () => {
                     ))}
                 </AccordionContent>
               </AccordionItem>
-            </Accordion>
-          );
-        })}
+            );
+          })}
+        </Accordion>
       </div>
     </div>
   );
