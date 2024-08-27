@@ -1,7 +1,7 @@
-import dogfight from "../assets/dogfight.mp4";
-import Discord from "../assets/discord.svg?react";
+import dogfight from "/assets/dogfight.mp4";
+import Discord from "../lib/discord.svg?react";
 import { ReactTyped } from "react-typed";
-import logo from "../assets/idf-logo.png";
+import logo from "/assets/idf-logo.png";
 import { useContext } from "react";
 import { LoadingContext } from "../lib/context";
 

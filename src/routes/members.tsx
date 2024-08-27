@@ -43,11 +43,11 @@ export const Members = () => {
   return (
     <div
       style={{
-        backgroundImage: `url("/src/assets/${
+        backgroundImage: `url("/assets/${
           currentBg ? games[currentBg].bg : "ww2.png"
         }")`,
       }}
-      className={`min-h-screen h-full transition-all  bg-cover bg-[50%] relative`}
+      className={`min-h-screen h-full transition-all  bg-cover  bg-[50%] relative`}
     >
       <div
         className={`absolute h-full w-full bg-black ${

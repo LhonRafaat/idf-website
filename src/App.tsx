@@ -1,5 +1,5 @@
 import "./App.css";
-import intro from "./assets/idf-intro.mp4";
+import intro from "/assets/idf-intro.mp4";
 import { useEffect, useState } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Home } from "./routes/home";
