@@ -4,11 +4,24 @@ import { useEffect, useState } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Home } from "./routes/home";
 import { LoadingContext } from "./lib/context";
+import { Layout } from "./layout";
+import { Members } from "./routes/members";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
+    element: <Layout />,
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
+
+      {
+        path: "/members",
+        element: <Members />,
+      },
+    ],
   },
 ]);
 
