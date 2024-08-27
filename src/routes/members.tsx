@@ -65,7 +65,7 @@ export const Members = () => {
         } !z-10`}
       ></div>
       <div className="h-[20vh]"></div>
-      <div className="flex h-full w-full text-white flex-col p-5">
+      <div className="flex h-full w-full text-white flex-col p-5 pb-40">
         <Accordion type="single" className="!z-20" collapsible>
           {games.map((game: { label: string; bg: string }, i: number) => {
             return (
