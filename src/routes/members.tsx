@@ -24,6 +24,8 @@ export const Members = () => {
     data: Array<IMember>;
   }> | null>(null);
 
+  const [bgChanged, setBgChanged] = useState(false);
+
   const membersData = new MembersData();
 
   useEffect(() => {
@@ -49,9 +51,17 @@ export const Members = () => {
       }}
       className={`min-h-screen h-full transition-all  bg-cover  bg-[50%] relative`}
     >
+      {/* black layer */}
       <div
         className={`absolute h-full w-full bg-black ${
           [0, null].includes(currentBg) ? "opacity-40" : "opacity-60"
+        } !z-10`}
+      ></div>
+
+      {/* black bg for when bg images change */}
+      <div
+        className={`absolute h-full w-full transition-all bg-black ${
+          bgChanged ? "opacity-100" : "opacity-0"
         } !z-10`}
       ></div>
       <div className="h-[20vh]"></div>
@@ -67,7 +77,13 @@ export const Members = () => {
               <AccordionItem value={"item-" + i + 1}>
                 <AccordionTrigger
                   className="font-bold text-lg"
-                  onClick={() => setCurrentBg(i)}
+                  onClick={() => {
+                    setBgChanged(true);
+
+                    setTimeout(() => setCurrentBg(i), 500);
+                    setTimeout(() => setBgChanged(false), 600);
+                    console.log("hi");
+                  }}
                 >
                   {game.label}
                 </AccordionTrigger>
