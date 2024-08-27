@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "../components/accordion";
+import { MembersData } from "../lib/api";
+import { IMember } from "../lib/interfaces";
 
 const games = [
   { label: "Battlefield 2", bg: "bf2.jpg" },
@@ -17,7 +19,27 @@ const games = [
 
 export const Members = () => {
   const [currentBg, setCurrentBg] = useState<number | null>(null); // I use index because my array is fixed and is simpler to check
-  console.log(currentBg);
+  const [ourMembers, setOurMembers] = useState<Array<{
+    label: string;
+    data: Array<IMember>;
+  }> | null>(null);
+
+  const membersData = new MembersData();
+
+  useEffect(() => {
+    (async () => {
+      const [bfvMembers, bf1Members] = await Promise.all([
+        membersData.getBfvMembers(),
+        membersData.getBf1Members(),
+      ]);
+
+      setOurMembers([
+        { label: "Battlefield V", data: bfvMembers },
+        { label: "Battlefield 1", data: bf1Members },
+      ]);
+    })();
+  }, []);
+
   return (
     <div
       style={{
@@ -49,7 +71,19 @@ export const Members = () => {
                 >
                   {game.label}
                 </AccordionTrigger>
-                <AccordionContent>hi</AccordionContent>
+                <AccordionContent>
+                  {ourMembers
+                    ?.find((m) => m.label === game.label)
+                    ?.data.map((member: IMember, i: number) => (
+                      <div
+                        key={i + member.id}
+                        className="flex flex-row gap-2 w-full font-sans"
+                      >
+                        <span>{member.name}</span>
+                        <span>({member.role})</span>
+                      </div>
+                    ))}
+                </AccordionContent>
               </AccordionItem>
             </Accordion>
           );
