@@ -80,8 +80,8 @@ export const Members = () => {
                   onClick={() => {
                     setBgChanged(true);
 
-                    setTimeout(() => setCurrentBg(i), 500);
-                    setTimeout(() => setBgChanged(false), 600);
+                    setTimeout(() => setCurrentBg(i), 700);
+                    setTimeout(() => setBgChanged(false), 800);
                     console.log("hi");
                   }}
                 >
