@@ -1,12 +1,19 @@
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import { LoadingContext } from "../lib/context";
 
 export const Navbar = () => {
   const links = [
     { label: "Home", path: "/" },
     { label: "Our Members", path: "/members" },
   ];
+
+  const isLoading = useContext(LoadingContext);
   return (
-    <div className="flex flex-col lg:flex-row text-center gap-4 lg:gap-20 absolute text-white top-10 left-[30%] lg:left-1/3 z-20">
+    <div
+      style={{ opacity: isLoading ? 0 : 1 }}
+      className="flex flex-col lg:flex-row text-center gap-4 lg:gap-20 absolute text-white top-10 left-[30%] lg:left-1/3 z-20"
+    >
       {links.map((link) => (
         <NavLink
           className={({ isActive }) =>
