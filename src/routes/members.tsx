@@ -7,6 +7,7 @@ import {
 } from "../components/accordion";
 import { MembersData } from "../lib/api";
 import { IMember } from "../lib/interfaces";
+import { Bf2042Members, Bf2Members } from "../static-data"; //using static data because no API is available for bf2
 
 const games = [
   { label: "Battlefield 2", bg: "bf2.jpg" },
@@ -38,6 +39,8 @@ export const Members = () => {
       setOurMembers([
         { label: "Battlefield V", data: bfvMembers },
         { label: "Battlefield 1", data: bf1Members },
+        { label: "Battlefield 2", data: Bf2Members },
+        { label: "Battlefield 2042", data: Bf2042Members },
       ]);
     })();
   }, []);
