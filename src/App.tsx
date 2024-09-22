@@ -40,7 +40,7 @@ function App() {
         autoPlay
         loop
         muted
-        className={`w-full h-full fixed transition-all  object-cover ${
+        className={`w-full h-full fixed transition-all duration-1000  object-cover ${
           isLoading ? "z-50 opacity-1 " : " opacity-0 z-0"
         }`}
       />
