@@ -8,6 +8,7 @@ import {
 import { MembersData } from "../lib/api";
 import { IMember } from "../lib/interfaces";
 import { Bf2042Members, Bf2Members } from "../static-data"; //using static data because no API is available for bf2
+import GameBgImage from "../components/game-bg-image";
 
 const games = [
   { label: "Battlefield 2", bg: "bf2.jpg" },
@@ -24,8 +25,6 @@ export const Members = () => {
     label: string;
     data: Array<IMember>;
   }> | null>(null);
-
-  const [bgChanged, setBgChanged] = useState(false);
 
   const membersData = new MembersData();
 
@@ -45,28 +44,30 @@ export const Members = () => {
     })();
   }, []);
 
+  console.log(currentBg);
   return (
     <div
-      style={{
-        backgroundImage: `url("/assets/${
-          currentBg ? games[currentBg].bg : "ww2.png"
-        }")`,
-      }}
-      className={`min-h-screen h-full transition-all  bg-cover  bg-[50%] relative`}
+      className={`min-h-screen h-full transition-all bg-black  bg-cover  bg-[50%] relative`}
     >
       {/* black layer */}
-      <div
-        className={`absolute h-full w-full bg-black ${
-          [0, null].includes(currentBg) ? "opacity-40" : "opacity-60"
-        } !z-10`}
-      ></div>
+      <div className={`absolute h-full w-full bg-black opacity-80 !z-10`}></div>
 
-      {/* black bg for when bg images change */}
-      <div
-        className={`absolute h-full w-full transition-all bg-black ${
-          bgChanged ? "opacity-100" : "opacity-0"
-        } !z-10`}
-      ></div>
+      <img
+        src={"/assets/" + games[0]?.bg}
+        className={`absolute h-full w-full object-cover transition-all z-1 ${
+          ![0, null].includes(currentBg) ? "opacity-0" : "opacity-100"
+        }`}
+      />
+      {/* prefetch all images */}
+      {games.map((el, i) => {
+        return (
+          <GameBgImage
+            key={el.bg + el.label}
+            bg={el.bg}
+            show={currentBg === i}
+          />
+        );
+      })}
       <div className="h-[20vh]"></div>
       <div className="flex h-full w-full text-white flex-col p-5 pb-40">
         <Accordion type="single" className="!z-20" collapsible>
@@ -76,11 +77,7 @@ export const Members = () => {
                 <AccordionTrigger
                   className="font-bold text-lg"
                   onClick={() => {
-                    setBgChanged(true);
-
-                    setTimeout(() => setCurrentBg(i), 700);
-                    setTimeout(() => setBgChanged(false), 800);
-                    console.log("hi");
+                    setCurrentBg(i);
                   }}
                 >
                   {game.label}
