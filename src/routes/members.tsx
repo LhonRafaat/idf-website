@@ -20,7 +20,8 @@ const games = [
 ];
 
 export const Members = () => {
-  const [currentBg, setCurrentBg] = useState<number | null>(null); // I use index because my array is fixed and is simpler to check
+  const [currentBg, setCurrentBg] = useState<number>(0); // I use index because my array is fixed and is simpler to check
+  const [isExpanded, setIsExpanded] = useState(false);
   const [ourMembers, setOurMembers] = useState<Array<{
     label: string;
     data: Array<IMember>;
@@ -47,17 +48,11 @@ export const Members = () => {
   console.log(currentBg);
   return (
     <div
-      className={`min-h-screen h-full transition-all bg-black  bg-cover  bg-[50%] relative`}
+      className={`min-h-screen h-full transition-all overflow-hidden bg-black  bg-cover  bg-[50%] relative`}
     >
       {/* black layer */}
       <div className={`absolute h-full w-full bg-black opacity-80 !z-10`}></div>
 
-      <img
-        src={"/assets/" + games[0]?.bg}
-        className={`absolute h-full w-full object-cover transition-all z-1 ${
-          ![0, null].includes(currentBg) ? "opacity-0" : "opacity-100"
-        }`}
-      />
       {/* prefetch all images */}
       {games.map((el, i) => {
         return (
@@ -78,22 +73,25 @@ export const Members = () => {
                   className="font-bold text-lg"
                   onClick={() => {
                     setCurrentBg(i);
+                    setIsExpanded(!isExpanded);
                   }}
                 >
                   {game.label}
                 </AccordionTrigger>
                 <AccordionContent>
-                  {ourMembers
-                    ?.find((m) => m.label === game.label)
-                    ?.data.map((member: IMember, i: number) => (
-                      <div
-                        key={i + member.id}
-                        className="flex flex-row gap-2 w-full font-sans"
-                      >
-                        <span>{member.name}</span>
-                        <span>({member.role})</span>
-                      </div>
-                    ))}
+                  <div className="grid grid-cols-10 gap-2">
+                    {ourMembers
+                      ?.find((m) => m.label === game.label)
+                      ?.data.map((member: IMember, i: number) => (
+                        <div
+                          key={i + member.id}
+                          className="flex flex-row gap-1 w-full font-sans"
+                        >
+                          <span>{member.name}</span>
+                          <span>({member.role})</span>
+                        </div>
+                      ))}
+                  </div>
                 </AccordionContent>
               </AccordionItem>
             );

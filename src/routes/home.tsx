@@ -38,7 +38,9 @@ export const Home = () => {
         />
         <ReactTyped
           strings={["iDF Community"]}
-          className="text-xl lg:text-5xl uppercase font-extrabold"
+          className={`text-xl lg:text-5xl uppercase font-extrabold ${
+            isLoading ? "hidden" : "block"
+          }`}
           typeSpeed={100}
           backDelay={5000}
           loop
