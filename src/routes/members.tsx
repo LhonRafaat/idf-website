@@ -45,7 +45,6 @@ export const Members = () => {
     })();
   }, []);
 
-  console.log(currentBg);
   return (
     <div
       className={`min-h-screen h-full transition-all overflow-hidden bg-black  bg-cover  bg-[50%] relative`}
@@ -79,7 +78,7 @@ export const Members = () => {
                   {game.label}
                 </AccordionTrigger>
                 <AccordionContent>
-                  <div className="grid grid-cols-10 gap-2">
+                  <div className="grid grid-cols-2 lg:grid-cols-10 gap-2">
                     {ourMembers
                       ?.find((m) => m.label === game.label)
                       ?.data.map((member: IMember, i: number) => (
